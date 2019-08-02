@@ -1,7 +1,7 @@
 var map;
 var infoWindow;
 var request = {
-    types: ['bakery', 'cafe', 'meal_delivery', 'meal_takeaway','restaurant']
+    types: ['bakery|', 'cafe|', 'meal_delivery|', 'meal_takeaway|','restaurant']
 }
 var service;
 var markers = [];
@@ -54,6 +54,7 @@ function initialize(){
 
 function callback(results, status){
     if(status == google.maps.places.PlacesServiceStatus.OK){
+        //console.log(results);
         for(var i = 0; i < results.length; i++){
             markers.push(createMarker(results[i]));
         }
@@ -91,6 +92,7 @@ function clearResults(markers){
 
 
 function sub1(){
+    clearResults(markers)
     // getPricing();
     // if price is checked
     // include refinement by price
@@ -98,9 +100,11 @@ function sub1(){
     request = {
         keyword: getKeywords(),
         location: center,
-        radius: 8047
+        radius: 8047,
+        //types: ['bakery|', 'cafe|', 'meal_delivery|', 'meal_takeaway|','restaurant']
+        types: ["restaurant|", "food|", "point_of_interest|", "establishment|", "meal_delivery|", "meal_takeaway|", "cafe"]
     };
-    console.log(request);
+    //console.log(request);
 
     infoWindow = new google.maps.InfoWindow();
     service = new google.maps.places.PlacesService(map);
@@ -110,9 +114,9 @@ function sub1(){
         map.setCenter(event.latLng)
         clearResults(markers)
         request.location = map.center;
-        console.log(request);
         service.nearbySearch(request, callback);
     })
+
 }
 
 function getKeywords(){
