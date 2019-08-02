@@ -8,9 +8,9 @@
     <link rel="stylesheet" type="text/css" href="css/global.css">
 </head>
 <body>
-    <section class="container-fluid bg">
-        <section class="row justify-content-center">
-            <section class="col-12 col-sm-6 col-md-3">
+    <section class="container-fluid ">
+        <div class="row justify-content-center">
+            
                     <form class="form-container">
                             <div class="form-group form-check">
                                 <h3>Tipo de Comida</h3>
@@ -30,11 +30,11 @@
                                 <input type="checkbox" name="keyword" value="cafe"> Café<br>
                             </div>
                             <div class="form-group form-check">
-                                <h3>Rango de precios</h3>
+                                <h3>Rango de precios</h3>   
                                 <input type="checkbox" name="pricing" value="1"> $<br>
                                 <input type="checkbox" name="pricing" value="2"> $$<br>
                                 <input type="checkbox" name="pricing" value="3"> $$$<br>
-                                <input type="checkbox" name="pricing" value="4"> $$$<br>
+                                <input type="checkbox" name="pricing" value="4"> $$$$<br>
                             </div>
                             <div class="form-group form-check">
                                     <h3>Ubicación</h3>
@@ -43,27 +43,15 @@
                                 </div>
                             <div class="form-group form-check">
                                 <h3>¿Abierto ahora?</h3>
-                                <input type="radio" name="open" value="yes"> Sí<br>
-                                <input type="radio" name="open" value="no"> No<br>
+                                <input type="radio" name="isOpen" value="yes"> Sí<br>
+                                <input type="radio" name="isOpen" value="no"> No<br>
                             </div>
+                            <div id="map"></div><br>
                             <button type="button" class="btn btn-primary btn-block" onclick="sub1()">Buscar</button>
-                    </form>
+                        </form>
+                    </div>
             </section>
-        </section>
-    </section>
 
-    <div id="map">
-    </div>
-                    
-
-    <!-- Styles -->
-    <style>
-        html, body, #map{
-            height: 80%;
-            margin: 0px;
-            padding: 0px
-        }
-    </style>
 
 <!-- Scripts -->
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyADo_zdSOCIJJkmuhrMWPS7WP7mBYiY-Oo"></script>

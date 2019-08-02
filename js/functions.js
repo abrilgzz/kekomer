@@ -54,7 +54,7 @@ function initialize(){
 
 function callback(results, status){
     if(status == google.maps.places.PlacesServiceStatus.OK){
-        //console.log(results);
+        console.log(results);
         for(var i = 0; i < results.length; i++){
             markers.push(createMarker(results[i]));
         }
@@ -99,12 +99,16 @@ function sub1(){
 
     request = {
         keyword: getKeywords(),
+        price_level: getPriceLevel(),
         location: center,
+        opening_hours: {
+            open_now: openNow()
+        },
         radius: 8047,
         //types: ['bakery|', 'cafe|', 'meal_delivery|', 'meal_takeaway|','restaurant']
         types: ["restaurant|", "food|", "point_of_interest|", "establishment|", "meal_delivery|", "meal_takeaway|", "cafe"]
     };
-    //console.log(request);
+    console.log(request);
 
     infoWindow = new google.maps.InfoWindow();
     service = new google.maps.places.PlacesService(map);
@@ -125,7 +129,6 @@ function getKeywords(){
 
     for(var i = 0; i < checkboxes.length; i++){
         keywordsArray.push(checkboxes[i].value+"|");
-        console.log(keywordsArray[i]);
     }
     return keywordsArray;
 }
@@ -135,8 +138,20 @@ function getPriceLevel(){
     var checkboxes = document.querySelectorAll('input[name="pricing"][type=checkbox]:checked');
 
     for(var i = 0; i < checkboxes.length; i++){
-        pricesArray.push(checkboxes[i].value);
+        pricesArray.push(checkboxes[i].value+"|");
     }
+    return pricesArray;
+}
+
+function openNow(){
+    var isOpen = false;
+    var radio = document.querySelector('input[name="isOpen"]:checked').value;
+    
+    if (radio == "yes"){
+        isOpen = true;
+        //console.log(typeof(isOpen))
+    }
+    return isOpen;
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
