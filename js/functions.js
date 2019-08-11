@@ -19,7 +19,7 @@ var slider = new Slider("#priceSlider", {
 function initialize(){
     map = new google.maps.Map(document.getElementById('map'), {
         center: center,
-        zoom: 13
+        zoom: 11
     });
 
     if (navigator.geolocation){
@@ -91,9 +91,9 @@ function sub1(){
         minPriceLevel: priceRange[0],
         maxPriceLevel: priceRange[1],
         location: center,
-        // opening_hours: {
-        //     open_now: openNow()
-        // },
+        opening_hours: {
+            isOpen: openNow()
+        },
         radius: 8047,
         types: ["restaurant|", "food|", "meal_delivery|", "meal_takeaway|", "cafe"]
     };
@@ -128,7 +128,7 @@ function getPriceLevel(){
 }
 
 
-// TODO: 
+// TODO: check if checked or unchecked
 function openNow(){
     var isOpen = false;
     var radio = document.querySelector('input[name="isOpen"]:checked').value;
@@ -147,7 +147,13 @@ function getRandom(results){
     document.getElementById("resultAddress").style.display = "block";
     document.getElementById('resultAddress').innerHTML = randomResult.vicinity;
 
-    console.log(randomResult.name, randomResult.vicinity)
+    document.getElementById("resultGoogleMaps").style.display = "block";
+    var newlink = "https://www.google.com/maps/search/?api=1&query="+ randomResult.name +
+    "&query_place_id=" + randomResult.place_id;
+    var link = document.getElementById("resultGoogleMaps");
+    link.setAttribute("href", newlink);
+
+    //console.log(randomResult.name, randomResult.vicinity, randomResult.id);
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);

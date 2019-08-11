@@ -22,7 +22,6 @@
                                 <h3>Tipo de Comida</h3>
                                 <div class="row">
                                         <div class="col-sm-6">
-                                                <h4> places </h4>
                                                 <input type="checkbox" name="keyword" value="alitas"> Alitas<br>
                                                 <input type="checkbox" name="keyword" value="hamburguesas"> Hamburguesas<br>
                                                 <input type="checkbox" name="keyword" value="postres"> Postres<br>
@@ -40,25 +39,6 @@
                                                 <input type="checkbox" name="keyword" value="cafe"> Café<br>
                                                 <input type="checkbox" name="keyword" value="buffet"> Buffet<br>
                                         </div>
-                                        <!-- <div class="col-sm-6">
-                                                <h4> yelp! </h4>
-                                                <input type="checkbox" name="category" value="chicken_wings"> Alitas<br>
-                                                <input type="checkbox" name="category" value="burgers"> Hamburguesas<br>
-                                                <input type="checkbox" name="category" value="desserts"> Postres<br>
-                                                <input type="checkbox" name="category" value="pizza"> Pizza<br>
-                                                <input type="checkbox" name="category" value="mexican"> Mexicana<br>
-                                                <input type="checkbox" name="category" value="tradamerican"> Americana<br>
-                                                <input type="checkbox" name="category" value="comfortfood"> Comfort food<br>
-                                                <input type="checkbox" name="category" value="hotdogs"> Comida rápida<br>
-                                                <input type="checkbox" name="category" value="sushi"> Sushi<br>
-                                                <input type="checkbox" name="category" value="italian"> Italiana<br>
-                                                <input type="checkbox" name="category" value="desayuno"> Desayuno<br>
-                                                <input type="checkbox" name="category" value="asianfusion"> Oriental<br>
-                                                <input type="checkbox" name="category" value="salad"> Saludable<br>
-                                                <input type="checkbox" name="category" value="seafood"> Mariscos<br>
-                                                <input type="checkbox" name="category" value="coffee"> Café<br>
-                                                <input type="checkbox" name="category" value="buffets"> Buffet<br>
-                                        </div> -->
                                 </div>
                             </div>
                             <div class="form-group form-check">
@@ -83,12 +63,13 @@
                                 <input type="checkbox" name="isOpen" id="openNow" value="yes"> Sí<br>
                             </div>
                             <div id="map"></div><br>
-                            <button type="button" class="btn btn-primary btn-block" id="button1" onclick="sub1()">Buscar en places</button>
-                            <!-- <button type="button" class="btn btn-primary btn-block" id="button2">Buscar en yelp</button> -->
+                            <button type="button" class="btn btn-primary btn-block" id="button1" onclick="sub1()">Buscar</button>
                             <div class="div pt-4 pb-4">
                                 <label> Tu opción escogida al azar es: </label><br>
                                 <h2 id="resultName" style="display:none;"> x </h2>
-                                <h3 id="resultAddress" style="display:none;">...</h3>
+                                <label id="resultAddress" style="display: none;">...</label>
+                                <a href="http:// " id="resultGoogleMaps" style="display: none;">Abrir en Google Maps</a>
+                                <!-- <label id="resultGoogleMaps" style="display: none;">...</label> -->
                             </div>
                         </form>
                     </div>
@@ -97,7 +78,6 @@
 
 <!-- Scripts -->
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyADo_zdSOCIJJkmuhrMWPS7WP7mBYiY-Oo"></script>
-<!-- <script src="js/functions2.js"></script> -->
 <script src="https://code.jquery.com/jquery-3.3.1.js"
  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
  crossorigin="anonymous"></script>
