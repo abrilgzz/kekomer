@@ -1,3 +1,5 @@
+
+// Google Places API 
 var map;
 var infoWindow;
 var request = {
@@ -5,8 +7,14 @@ var request = {
 }
 var service;
 var markers = [];
-
 var center = new google.maps.LatLng(37.42, -122,084058);
+
+var slider = new Slider("#priceSlider", {
+    tooltip: 'always',
+    tooltip_split: true
+});
+
+
 
 function initialize(){
     map = new google.maps.Map(document.getElementById('map'), {
@@ -30,26 +38,7 @@ function initialize(){
         handleLocationError(false, infoWindow, map.getCenter());
     }
 
-    request = {
-        keyword: 'italian',
-        location: center,
-        radius: 8047
-    };
-
     infoWindow = new google.maps.InfoWindow();
-    service = new google.maps.places.PlacesService(map);
-    service.nearbySearch(request, callback);
-
-    // google.maps.event.addListener(map, 'rightclick', function(event){
-    //     map.setCenter(event.latLng)
-    //     clearResults(markers)
-    //     var request = {
-    //         location: event.latLng,
-    //         radius: 8047,
-    //         types: ['cafe']
-    //     };
-    //     service.nearbySearch(request, callback);
-    // })
 }
 
 function callback(results, status){
@@ -58,6 +47,8 @@ function callback(results, status){
         for(var i = 0; i < results.length; i++){
             markers.push(createMarker(results[i]));
         }
+
+        getRandom(results);
     }
 }
 
@@ -93,20 +84,18 @@ function clearResults(markers){
 
 function sub1(){
     clearResults(markers)
-    // getPricing();
-    // if price is checked
-    // include refinement by price
 
+    var priceRange = getPriceLevel()
     request = {
         keyword: getKeywords(),
-        price_level: getPriceLevel(),
+        minPriceLevel: priceRange[0],
+        maxPriceLevel: priceRange[1],
         location: center,
-        opening_hours: {
-            open_now: openNow()
-        },
+        // opening_hours: {
+        //     open_now: openNow()
+        // },
         radius: 8047,
-        //types: ['bakery|', 'cafe|', 'meal_delivery|', 'meal_takeaway|','restaurant']
-        types: ["restaurant|", "food|", "point_of_interest|", "establishment|", "meal_delivery|", "meal_takeaway|", "cafe"]
+        types: ["restaurant|", "food|", "meal_delivery|", "meal_takeaway|", "cafe"]
     };
     console.log(request);
 
@@ -120,7 +109,6 @@ function sub1(){
         request.location = map.center;
         service.nearbySearch(request, callback);
     })
-
 }
 
 function getKeywords(){
@@ -133,16 +121,14 @@ function getKeywords(){
     return keywordsArray;
 }
 
-function getPriceLevel(){
-    var pricesArray = [];
-    var checkboxes = document.querySelectorAll('input[name="pricing"][type=checkbox]:checked');
 
-    for(var i = 0; i < checkboxes.length; i++){
-        pricesArray.push(checkboxes[i].value+"|");
-    }
-    return pricesArray;
+function getPriceLevel(){
+    var value = slider.getValue();
+    return value;
 }
 
+
+// TODO: 
 function openNow(){
     var isOpen = false;
     var radio = document.querySelector('input[name="isOpen"]:checked').value;
@@ -152,6 +138,16 @@ function openNow(){
         //console.log(typeof(isOpen))
     }
     return isOpen;
+}
+
+function getRandom(results){
+    var randomResult = results[Math.floor(Math.random()*results.length)];
+    document.getElementById("resultName").style.display = "block";
+    document.getElementById('resultName').innerHTML = randomResult.name;
+    document.getElementById("resultAddress").style.display = "block";
+    document.getElementById('resultAddress').innerHTML = randomResult.vicinity;
+
+    console.log(randomResult.name, randomResult.vicinity)
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);

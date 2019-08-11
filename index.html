@@ -6,48 +6,90 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/global.css">
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.js"
+    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>
+    <link href="css/bootstrap-slider.min.css" rel="stylesheet">
+
 </head>
 <body>
     <section class="container-fluid ">
         <div class="row justify-content-center">
-            
                     <form class="form-container">
                             <div class="form-group form-check">
+                                <h2>Ké komer?</h3>
                                 <h3>Tipo de Comida</h3>
-                                <input type="checkbox" name="keyword" value="alitas"> Alitas<br>
-                                <input type="checkbox" name="keyword" value="hamburguesas"> Hamburguesas<br>
-                                <input type="checkbox" name="keyword" value="postres"> Postres<br>
-                                <input type="checkbox" name="keyword" value="pizza"> Pizza<br>
-                                <input type="checkbox" name="keyword" value="mexicana"> Mexicana<br>
-                                <input type="checkbox" name="keyword" value="americano"> Americana<br>
-                                <input type="checkbox" name="keyword" value="comida rapida"> Comida rápida<br>
-                                <input type="checkbox" name="keyword" value="sushi"> Sushi<br>
-                                <input type="checkbox" name="keyword" value="italiana"> Italiana<br>
-                                <input type="checkbox" name="keyword" value="desayuno"> Desayuno<br>
-                                <input type="checkbox" name="keyword" value="oriental"> Oriental<br>
-                                <input type="checkbox" name="keyword" value="saludable"> Saludable<br>
-                                <input type="checkbox" name="keyword" value="mariscos"> Mariscos<br>
-                                <input type="checkbox" name="keyword" value="cafe"> Café<br>
+                                <div class="row">
+                                        <div class="col-sm-6">
+                                                <h4> places </h4>
+                                                <input type="checkbox" name="keyword" value="alitas"> Alitas<br>
+                                                <input type="checkbox" name="keyword" value="hamburguesas"> Hamburguesas<br>
+                                                <input type="checkbox" name="keyword" value="postres"> Postres<br>
+                                                <input type="checkbox" name="keyword" value="pizza"> Pizza<br>
+                                                <input type="checkbox" name="keyword" value="mexicana| tacos"> Mexicana<br>
+                                                <input type="checkbox" name="keyword" value="tacos"> Tacos<br>
+                                                <input type="checkbox" name="keyword" value="americano"> Americana<br>
+                                                <input type="checkbox" name="keyword" value="comida rapida"> Comida rápida<br>
+                                                <input type="checkbox" name="keyword" value="sushi"> Sushi<br>
+                                                <input type="checkbox" name="keyword" value="italiana"> Italiana<br>
+                                                <input type="checkbox" name="keyword" value="desayuno"> Desayuno<br>
+                                                <input type="checkbox" name="keyword" value="oriental"> Oriental<br>
+                                                <input type="checkbox" name="keyword" value="saludable| ensalada"> Saludable<br>
+                                                <input type="checkbox" name="keyword" value="mariscos"> Mariscos<br>
+                                                <input type="checkbox" name="keyword" value="cafe"> Café<br>
+                                                <input type="checkbox" name="keyword" value="buffet"> Buffet<br>
+                                        </div>
+                                        <!-- <div class="col-sm-6">
+                                                <h4> yelp! </h4>
+                                                <input type="checkbox" name="category" value="chicken_wings"> Alitas<br>
+                                                <input type="checkbox" name="category" value="burgers"> Hamburguesas<br>
+                                                <input type="checkbox" name="category" value="desserts"> Postres<br>
+                                                <input type="checkbox" name="category" value="pizza"> Pizza<br>
+                                                <input type="checkbox" name="category" value="mexican"> Mexicana<br>
+                                                <input type="checkbox" name="category" value="tradamerican"> Americana<br>
+                                                <input type="checkbox" name="category" value="comfortfood"> Comfort food<br>
+                                                <input type="checkbox" name="category" value="hotdogs"> Comida rápida<br>
+                                                <input type="checkbox" name="category" value="sushi"> Sushi<br>
+                                                <input type="checkbox" name="category" value="italian"> Italiana<br>
+                                                <input type="checkbox" name="category" value="desayuno"> Desayuno<br>
+                                                <input type="checkbox" name="category" value="asianfusion"> Oriental<br>
+                                                <input type="checkbox" name="category" value="salad"> Saludable<br>
+                                                <input type="checkbox" name="category" value="seafood"> Mariscos<br>
+                                                <input type="checkbox" name="category" value="coffee"> Café<br>
+                                                <input type="checkbox" name="category" value="buffets"> Buffet<br>
+                                        </div> -->
+                                </div>
                             </div>
                             <div class="form-group form-check">
                                 <h3>Rango de precios</h3>   
-                                <input type="checkbox" name="pricing" value="1"> $<br>
-                                <input type="checkbox" name="pricing" value="2"> $$<br>
-                                <input type="checkbox" name="pricing" value="3"> $$$<br>
-                                <input type="checkbox" name="pricing" value="4"> $$$$<br>
+                                <b> $ </b>
+                                <input id="priceSlider"
+                                type="text" 
+                                class="span2" value="" 
+                                data-slider-min="1" 
+                                data-slider-max="4" 
+                                data-slider-step="1" 
+                                data-slider-value="[2,3]"/>
                             </div>
-                            <div class="form-group form-check">
+                            <!-- TODO: Design and implement friendlier set location-->
+                            <!-- <div class="form-group form-check">
                                     <h3>Ubicación</h3>
                                     <input type="checkbox" name="location" value="near"> Cerca<br>
                                     <input type="checkbox" name="location" value="far"> Lejos<br>
-                                </div>
+                            </div> -->
                             <div class="form-group form-check">
                                 <h3>¿Abierto ahora?</h3>
-                                <input type="radio" name="isOpen" value="yes"> Sí<br>
-                                <input type="radio" name="isOpen" value="no"> No<br>
+                                <input type="checkbox" name="isOpen" id="openNow" value="yes"> Sí<br>
                             </div>
                             <div id="map"></div><br>
-                            <button type="button" class="btn btn-primary btn-block" onclick="sub1()">Buscar</button>
+                            <button type="button" class="btn btn-primary btn-block" id="button1" onclick="sub1()">Buscar en places</button>
+                            <!-- <button type="button" class="btn btn-primary btn-block" id="button2">Buscar en yelp</button> -->
+                            <div class="div pt-4 pb-4">
+                                <label> Tu opción escogida al azar es: </label><br>
+                                <h2 id="resultName" style="display:none;"> x </h2>
+                                <h3 id="resultAddress" style="display:none;">...</h3>
+                            </div>
                         </form>
                     </div>
             </section>
@@ -55,11 +97,16 @@
 
 <!-- Scripts -->
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyADo_zdSOCIJJkmuhrMWPS7WP7mBYiY-Oo"></script>
-<script src="js/functions.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<!-- <script src="js/functions2.js"></script> -->
+<script src="https://code.jquery.com/jquery-3.3.1.js"
+ integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+ crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
+<script src="js/bootstrap-slider.min.js"></script>
+<script src="js/functions.js"></script>
 </body>
+
 </html>
+
 
