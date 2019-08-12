@@ -1,5 +1,21 @@
+// Slider
+var slider = new Slider("#priceSlider", {
+    tooltip: 'always',
+    tooltip_split: true
+});
 
 // Google Places API 
+var GOOGLE_MAP_KEY = config.apiKey;
+
+function loadScript() {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src = 'https://maps.googleapis.com/maps/api/js?v=3' +
+      '&key=' + GOOGLE_MAP_KEY +'&callback=initialize'; 
+  document.body.appendChild(script);
+}
+window.onload = loadScript;
+
 var map;
 var infoWindow;
 var request = {
@@ -9,10 +25,7 @@ var service;
 var markers = [];
 var center = new google.maps.LatLng(37.42, -122,084058);
 
-var slider = new Slider("#priceSlider", {
-    tooltip: 'always',
-    tooltip_split: true
-});
+
 
 
 
