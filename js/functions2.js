@@ -1,5 +1,10 @@
+/*
+For future use; combine both Google Places and Yelp! APIs to include more results
+*/
+
+
 var queryURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?";
-var apiKey = "3A-ZsVHEZZnbToAWkcwOIM_h8DdSJT-pq4RAQLChitYjfp8ICX8Mr80W1-uwQbf3bojtE3iffbTRslDoZfCh35uijFPivpnVRUd6GgzRcqhrRTpWE_d_sA3092NPXXYx" 
+var apiKey = config.yelpAPIkey
 
 var myLatitude;
 var myLongitude;

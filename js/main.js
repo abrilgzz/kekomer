@@ -26,9 +26,6 @@ var markers = [];
 var center = new google.maps.LatLng(37.42, -122,084058);
 
 
-
-
-
 function initialize(){
     map = new google.maps.Map(document.getElementById('map'), {
         center: center,
