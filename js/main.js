@@ -1,4 +1,4 @@
-import * as config from 'config.js';
+import config from 'config.js';
 
 // Slider
 var slider = new Slider("#priceSlider", {
