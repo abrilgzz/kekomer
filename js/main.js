@@ -1,3 +1,5 @@
+import * as config from './config.js';
+
 // Slider
 var slider = new Slider("#priceSlider", {
     tooltip: 'always',
