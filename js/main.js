@@ -1,10 +1,10 @@
-// Slider
+/*// Slider
 var slider = new Slider("#priceSlider", {
     tooltip: 'always',
     tooltip_split: true
-});
+});*/
 
-// Google Places API 
+/*// Google Places API 
 var GOOGLE_MAP_KEY = config.apiKey;
 
 function loadScript() {
@@ -14,7 +14,7 @@ function loadScript() {
       '&key=' + GOOGLE_MAP_KEY +'&callback=initialize'; 
   document.body.appendChild(script);
 }
-window.onload = loadScript;
+window.onload = loadScript;*/
 
 var map;
 var infoWindow;
@@ -95,20 +95,19 @@ function clearResults(markers){
 function sub1(){
     clearResults(markers)
 
-    var priceRange = getPriceLevel()
+    //var priceRange = getPriceLevel()
     request = {
         keyword: getKeywords(),
-        minPriceLevel: priceRange[0],
-        maxPriceLevel: priceRange[1],
+        /*minPriceLevel: priceRange[0],
+        maxPriceLevel: priceRange[1],*/
         location: center,
-        opening_hours: {
+        /*opening_hours: {
             isOpen: openNow()
-        },
+        },*/
         radius: 8047,
         types: ["restaurant|", "food|", "meal_delivery|", "meal_takeaway|", "cafe"]
     };
     console.log(request);
-
     infoWindow = new google.maps.InfoWindow();
     service = new google.maps.places.PlacesService(map);
     service.nearbySearch(request, callback);
