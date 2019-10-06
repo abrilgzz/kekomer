@@ -111,14 +111,14 @@ function sub1(){
         keyword: getKeywords(),
         minPriceLevel: priceRange[0],
         maxPriceLevel: priceRange[1],
-        location: center,
+        location: map.center,
         opening_hours: {
             isOpen: openNow()
         },
         radius: 8047,
         types: ["restaurant|", "food|", "meal_delivery|", "meal_takeaway|", "cafe"]
     };
-    //console.log(request);
+    console.log(request.location.latLng);
     infoWindow = new google.maps.InfoWindow();
     service = new google.maps.places.PlacesService(map);
     service.nearbySearch(request, callback);
