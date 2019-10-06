@@ -169,7 +169,6 @@ function getRandom(results){
     var link = document.getElementById("resultGoogleMaps");
     link.setAttribute("href", newlink);
 
-    createSpecialMarker(randomResult);
     return randomResult;
 }
 
