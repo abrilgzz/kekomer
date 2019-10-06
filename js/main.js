@@ -17,6 +17,8 @@ var request = {
 }
 var service;
 var markers = [];
+var randomPlace;
+
 var center = new google.maps.LatLng(37.42, -122,084058);
 var mySlider;
 
@@ -51,8 +53,8 @@ function callback(results, status){
         for(var i = 0; i < results.length; i++){
             markers.push(createMarker(results[i]));
         }
-
-        getRandom(results);
+        randomPlace = getRandom(results);
+        markers.push(createSpecialMarker(randomPlace));
     }
 }
 
@@ -68,6 +70,21 @@ function createMarker(place){
     var placeLoc = place.geometry.location;
     var marker = new google.maps.Marker({
         map: map,
+        position: place.geometry.location
+    });
+
+    google.maps.event.addListener(marker, 'click', function(){
+        infoWindow.setContent(place.name);
+        infoWindow.open(map, this);
+    });
+    return marker;
+}
+
+function createSpecialMarker(place){
+    var placeLoc = place.geometry.location;
+    var marker = new google.maps.Marker({
+        map: map,
+        label: '!',
         position: place.geometry.location
     });
 
@@ -152,7 +169,8 @@ function getRandom(results){
     var link = document.getElementById("resultGoogleMaps");
     link.setAttribute("href", newlink);
 
-    // TODO: Create a special marker or way to visualize random choice on map
+    createSpecialMarker(randomResult);
+    return randomResult;
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
