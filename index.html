@@ -11,12 +11,22 @@
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
         crossorigin="anonymous">
     </script>
+
     <script type="text/javascript"
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDiC6q3-uZ5HAugl12FreBdiHhlhOyn8ek&sensor=false?&libraries=places">
     </script>
+
+    <link href="css/bootstrap-slider.min.css" rel="stylesheet">
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>   
+    <script src="js/bootstrap-slider.min.js"></script>
+    
     <script src="js/config.js"></script>
     <script src="js/main.js"></script>
-    <link href="css/bootstrap-slider.min.css" rel="stylesheet">
 
 </head>
 <body>
@@ -47,31 +57,35 @@
                                         </div>
                                 </div>
                             </div>
-                            <!-- TODO: Price range slider
                             <div class="form-group form-check">
+                                
                                 <h3>Rango de precios</h3>   
-                                <b> $ </b>
-                                <input id="priceSlider"
-                                type="text" 
-                                class="span2" value="" 
-                                data-slider-min="1" 
-                                data-slider-max="4" 
-                                data-slider-step="1" 
-                                data-slider-value="[2,3]"/>
-                            </div> -->
+                                
+                                <input
+                                    id="priceSlider"
+                                    type="text"
+                                    name="somename"
+                                    data-provide="slider"
+                                    data-slider-range="true"
+                                    data-slider-ticks="[1, 2, 3, 4]"
+                                    data-slider-ticks-labels='["$", "$$", "$$$", "$$$$"]'
+                                    data-slider-min="1"
+                                    data-slider-max="4"
+                                    data-slider-step="1"
+                                    data-slider-value="[1,4]"
+                                    data-slider-tooltip="hide"
+                                > <br>
+                            </div>
                             <!-- TODO: Design and implement friendlier set location-->
                             <!-- <div class="form-group form-check">
                                     <h3>Ubicación</h3>
                                     <input type="checkbox" name="location" value="near"> Cerca<br>
                                     <input type="checkbox" name="location" value="far"> Lejos<br>
                             </div> -->
-                            <!-- TODO: Open now-->
-                            <!--
                             <div class="form-group form-check">
                                 <h3>¿Abierto ahora?</h3>
-                                <input type="checkbox" name="isOpen" id="openNow" value="yes"> Sí<br>
+                                <input type="checkbox" name="isOpen" id="openNow" value="yes" checked> Sí<br>
                             </div>
-                            -->
                             <div id="map"></div><br>
                             <button type="button" class="btn btn-primary btn-block" id="button1" onclick="sub1()">Buscar</button>
                             <div class="div pt-4 pb-4">
@@ -79,7 +93,6 @@
                                 <h2 id="resultName" style="display:none;"> x </h2>
                                 <label id="resultAddress" style="display: none;">...</label>
                                 <a href="http:// " id="resultGoogleMaps" style="display: none;">Abrir en Google Maps</a>
-                                <!-- <label id="resultGoogleMaps" style="display: none;">...</label> -->
                             </div>
                         </form>
                     </div>
@@ -87,7 +100,6 @@
 
 
 <!-- Scripts -->
-<script src="js/bootstrap-slider.min.js"></script>
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.js"

@@ -1,8 +1,8 @@
-/*// Slider
-var slider = new Slider("#priceSlider", {
-    tooltip: 'always',
-    tooltip_split: true
-});*/
+// Slider
+// var slider = new Slider("#priceSlider", {
+//     tooltip: 'always',
+//     tooltip_split: true
+// });
 
 /*// Google Places API 
 var GOOGLE_MAP_KEY = config.apiKey;
@@ -13,6 +13,9 @@ function loadScript() {
   script.src = 'https://maps.googleapis.com/maps/api/js?v=3' +
       '&key=' + GOOGLE_MAP_KEY +'&callback=initialize'; 
   document.body.appendChild(script);
+  // Instantiate a slider
+    var mySlider = new Slider("#priceSlider", {
+    });
 }
 window.onload = loadScript;*/
 
@@ -95,15 +98,15 @@ function clearResults(markers){
 function sub1(){
     clearResults(markers)
 
-    //var priceRange = getPriceLevel()
+    var priceRange = getPriceLevel()
     request = {
         keyword: getKeywords(),
-        /*minPriceLevel: priceRange[0],
-        maxPriceLevel: priceRange[1],*/
+        minPriceLevel: priceRange[0],
+        maxPriceLevel: priceRange[1],
         location: center,
-        /*opening_hours: {
+        opening_hours: {
             isOpen: openNow()
-        },*/
+        },
         radius: 8047,
         types: ["restaurant|", "food|", "meal_delivery|", "meal_takeaway|", "cafe"]
     };
@@ -130,21 +133,20 @@ function getKeywords(){
     return keywordsArray;
 }
 
-
 function getPriceLevel(){
-    var value = slider.getValue();
+    var value = mySlider.getValue();
+    
+    console.log(value);
     return value;
 }
 
-
-// TODO: check if checked or unchecked
 function openNow(){
     var isOpen = false;
     var radio = document.querySelector('input[name="isOpen"]:checked').value;
     
     if (radio == "yes"){
         isOpen = true;
-        //console.log(typeof(isOpen))
+        console.log(typeof(isOpen))
     }
     return isOpen;
 }
@@ -162,7 +164,14 @@ function getRandom(results){
     var link = document.getElementById("resultGoogleMaps");
     link.setAttribute("href", newlink);
 
-    //console.log(randomResult.name, randomResult.vicinity, randomResult.id);
+    // TODO: Create a special marker or way to visualize random choice on map
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
+
+// TODO: FIX DUPLICATE SLIDER
+var mySlider;
+document.addEventListener("DOMContentLoaded", function() {
+    mySlider =  new Slider("#priceSlider", {
+    });
+}, false);
