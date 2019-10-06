@@ -1,9 +1,3 @@
-// Slider
-// var slider = new Slider("#priceSlider", {
-//     tooltip: 'always',
-//     tooltip_split: true
-// });
-
 /*// Google Places API 
 var GOOGLE_MAP_KEY = config.apiKey;
 
@@ -13,9 +7,6 @@ function loadScript() {
   script.src = 'https://maps.googleapis.com/maps/api/js?v=3' +
       '&key=' + GOOGLE_MAP_KEY +'&callback=initialize'; 
   document.body.appendChild(script);
-  // Instantiate a slider
-    var mySlider = new Slider("#priceSlider", {
-    });
 }
 window.onload = loadScript;*/
 
@@ -27,7 +18,7 @@ var request = {
 var service;
 var markers = [];
 var center = new google.maps.LatLng(37.42, -122,084058);
-
+var mySlider;
 
 function initialize(){
     map = new google.maps.Map(document.getElementById('map'), {
@@ -56,7 +47,7 @@ function initialize(){
 
 function callback(results, status){
     if(status == google.maps.places.PlacesServiceStatus.OK){
-        console.log(results);
+        //console.log(results);
         for(var i = 0; i < results.length; i++){
             markers.push(createMarker(results[i]));
         }
@@ -110,7 +101,7 @@ function sub1(){
         radius: 8047,
         types: ["restaurant|", "food|", "meal_delivery|", "meal_takeaway|", "cafe"]
     };
-    console.log(request);
+    //console.log(request);
     infoWindow = new google.maps.InfoWindow();
     service = new google.maps.places.PlacesService(map);
     service.nearbySearch(request, callback);
@@ -135,8 +126,6 @@ function getKeywords(){
 
 function getPriceLevel(){
     var value = mySlider.getValue();
-    
-    console.log(value);
     return value;
 }
 
@@ -146,7 +135,6 @@ function openNow(){
     
     if (radio == "yes"){
         isOpen = true;
-        console.log(typeof(isOpen))
     }
     return isOpen;
 }
@@ -169,9 +157,6 @@ function getRandom(results){
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
-// TODO: FIX DUPLICATE SLIDER
-var mySlider;
 document.addEventListener("DOMContentLoaded", function() {
-    mySlider =  new Slider("#priceSlider", {
-    });
+    mySlider = new Slider('#priceSlider', {});
 }, false);
