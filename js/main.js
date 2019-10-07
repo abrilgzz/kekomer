@@ -18,9 +18,11 @@ var request = {
 var service;
 var markers = [];
 var randomPlace;
+var circle;
 
 var center = new google.maps.LatLng(37.42, -122,084058);
 var mySlider;
+var radiusSlider;
 
 function initialize(){
     map = new google.maps.Map(document.getElementById('map'), {
@@ -37,12 +39,28 @@ function initialize(){
             center = new google.maps.LatLng(pos.lat, pos.lng);
             infoWindow.setPosition(pos);
             map.setCenter(pos);
+
+            circle = new google.maps.Circle({
+                strokeColor: '#FF0000',
+                strokeOpacity: 0.8,
+                fillColor: '#FF0000',
+                fillOpacity: 0.35,
+                map: map, 
+                center: center,
+                radius: 6500, 
+                zindex: 100
+            });
         }, function(){
             handleLocationError(true, infoWindow, map.getCenter());
         });
     } else{
         handleLocationError(false, infoWindow, map.getCenter());
     }
+
+    // Edit search circle
+    map.addListener("click", function(event) {
+        circle.setMap(null);
+    });
 
     infoWindow = new google.maps.InfoWindow();
 }
@@ -101,7 +119,6 @@ function clearResults(markers){
     }
     markers = []
 }
-
 
 function sub1(){
     clearResults(markers)
@@ -172,8 +189,21 @@ function getRandom(results){
     return randomResult;
 }
 
+// Edit radius distance
+function editRadius(){
+    circle
+}
+
+// Add marker to map center
+
+// Click on  map to change center and move marker
+
+
 google.maps.event.addDomListener(window, 'load', initialize);
 
 document.addEventListener("DOMContentLoaded", function() {
     mySlider = new Slider('#priceSlider', {});
+    radiusSlider = new Slider('#radiusSlider', {
+        tooltip: 'always'});
 }, false);
+
