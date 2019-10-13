@@ -79,7 +79,6 @@
                                 <h3>¿Abierto ahora?</h3>
                                 <input type="checkbox" name="isOpen" id="openNow" value="yes" checked> Sí<br>
                             </div>
-                            <!-- TODO: Design and implement friendlier set location-->
                             <div class="form-group form-check">
                                     <h3>Rango de búsqueda</h3>
                                     Buscando a <span id="radiusSliderVal">6500 </span>m de la ubicación seleccionada.
@@ -93,7 +92,7 @@
                                         data-slider-value="6500"/>
                             </div>
                             <div id="map"></div><br>
-                            <button type="button" class="btn btn-primary btn-block" id="button1" onclick="sub1()">Buscar</button>
+                            <button type="button" class="btn btn-primary btn-block" id="button1" onclick="searchNow()">Buscar</button>
                             <div class="div pt-4 pb-4">
                                 <label> Tu opción escogida al azar es: </label><br>
                                 <h2 id="resultName" style="display:none;"> x </h2>

@@ -63,7 +63,7 @@ function initialize(){
 
     infoWindow = new google.maps.InfoWindow();
 
-    //Add listener to click to change center
+    //Add listener to click on to change center for search
     google.maps.event.addListener(map, "click", function (event) {
         clearResults(markers);
 
@@ -112,7 +112,6 @@ function createMarker(place){
     return marker;
 }
 
-// Maybe display random choice data ?
 function createSpecialMarker(place){
     var placeLoc = place.geometry.location;
     var marker = new google.maps.Marker({
@@ -135,7 +134,7 @@ function clearResults(markers){
     markers = []
 }
 
-function sub1(){
+function searchNow(){
     clearResults(markers)
 
     var priceRange = priceSlider.getValue();
@@ -164,6 +163,7 @@ function sub1(){
     })
 }
 
+
 function getKeywords(){
     var keywordsArray = [];
     var checkboxes = document.querySelectorAll('input[name="keyword"][type=checkbox]:checked');
@@ -184,6 +184,21 @@ function openNow(){
     return isOpen;
 }
 
+function redrawCircle(){
+    document.getElementById("radiusSliderVal").textContent = radiusSlider.getValue();
+    circle.setMap(null);
+    circle = new google.maps.Circle({
+        strokeColor: '#FF0000',
+        strokeOpacity: 0.8,
+        fillColor: '#FF0000',
+        fillOpacity: 0.35,
+        map: map, 
+        center: center,
+        radius: radiusSlider.getValue(), 
+        zindex: 100
+    });    
+}
+
 function getRandom(results){
     var randomResult = results[Math.floor(Math.random()*results.length)];
     document.getElementById("resultName").style.display = "block";
@@ -200,24 +215,6 @@ function getRandom(results){
     return randomResult;
 }
 
-function redrawCircle(){
-    document.getElementById("radiusSliderVal").textContent = radiusSlider.getValue();
-    circle.setMap(null);
-    circle = new google.maps.Circle({
-        strokeColor: '#FF0000',
-        strokeOpacity: 0.8,
-        fillColor: '#FF0000',
-        fillOpacity: 0.35,
-        map: map, 
-        center: center,
-        radius: radiusSlider.getValue(), 
-        zindex: 100
-    });    
-}
-
-// Add marker to map center??
-
-// TODO: No result found
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
@@ -229,3 +226,9 @@ document.addEventListener("DOMContentLoaded", function() {
         .on('slide', redrawCircle);
 }, false);
 
+
+// TODO: Add marker to map center??
+// TODO: No result found
+// TODO: Only delivery + links to Rappi/Uber Eats, etc
+// TODO: Improve UI
+// TODO: Ads??
