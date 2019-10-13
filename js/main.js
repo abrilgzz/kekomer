@@ -18,11 +18,15 @@ var request = {
 var service;
 var markers = [];
 var randomPlace;
-var circle;
 
+var priceSlider;
+
+var circle;
 var center = new google.maps.LatLng(37.42, -122,084058);
-var mySlider;
 var radiusSlider;
+var currentRadius;
+
+var circleRadius;
 
 function initialize(){
     map = new google.maps.Map(document.getElementById('map'), {
@@ -57,12 +61,22 @@ function initialize(){
         handleLocationError(false, infoWindow, map.getCenter());
     }
 
-    // Edit search circle
-    map.addListener("click", function(event) {
-        circle.setMap(null);
-    });
-
     infoWindow = new google.maps.InfoWindow();
+
+    //Add listener to click to change center
+    google.maps.event.addListener(map, "click", function (event) {
+        clearResults(markers);
+
+        var pos = {
+            lat: event.latLng.lat(),
+            lng: event.latLng.lng()
+        };
+        center = new google.maps.LatLng(pos.lat, pos.lng);
+        infoWindow.setPosition(pos);
+        map.setCenter(pos);
+
+        redrawCircle();
+    }); 
 }
 
 function callback(results, status){
@@ -98,6 +112,7 @@ function createMarker(place){
     return marker;
 }
 
+// Maybe display random choice data ?
 function createSpecialMarker(place){
     var placeLoc = place.geometry.location;
     var marker = new google.maps.Marker({
@@ -123,7 +138,8 @@ function clearResults(markers){
 function sub1(){
     clearResults(markers)
 
-    var priceRange = getPriceLevel()
+    var priceRange = priceSlider.getValue();
+
     request = {
         keyword: getKeywords(),
         minPriceLevel: priceRange[0],
@@ -132,10 +148,10 @@ function sub1(){
         opening_hours: {
             isOpen: openNow()
         },
-        radius: 8047,
+        radius: radiusSlider.getValue(),
         types: ["restaurant|", "food|", "meal_delivery|", "meal_takeaway|", "cafe"]
     };
-    console.log(request.location.latLng);
+    //console.log(request.radius);
     infoWindow = new google.maps.InfoWindow();
     service = new google.maps.places.PlacesService(map);
     service.nearbySearch(request, callback);
@@ -156,11 +172,6 @@ function getKeywords(){
         keywordsArray.push(checkboxes[i].value+"|");
     }
     return keywordsArray;
-}
-
-function getPriceLevel(){
-    var value = mySlider.getValue();
-    return value;
 }
 
 function openNow(){
@@ -189,21 +200,32 @@ function getRandom(results){
     return randomResult;
 }
 
-// Edit radius distance
-function editRadius(){
-    circle
+function redrawCircle(){
+    document.getElementById("radiusSliderVal").textContent = radiusSlider.getValue();
+    circle.setMap(null);
+    circle = new google.maps.Circle({
+        strokeColor: '#FF0000',
+        strokeOpacity: 0.8,
+        fillColor: '#FF0000',
+        fillOpacity: 0.35,
+        map: map, 
+        center: center,
+        radius: radiusSlider.getValue(), 
+        zindex: 100
+    });    
 }
 
-// Add marker to map center
+// Add marker to map center??
 
-// Click on  map to change center and move marker
-
+// TODO: No result found
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
 document.addEventListener("DOMContentLoaded", function() {
-    mySlider = new Slider('#priceSlider', {});
+    priceSlider = new Slider('#priceSlider', {});
+
     radiusSlider = new Slider('#radiusSlider', {
-        tooltip: 'always'});
+        tooltip: 'always'})
+        .on('slide', redrawCircle);
 }, false);
 
