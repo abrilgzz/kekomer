@@ -45,9 +45,9 @@ function initialize(){
             map.setCenter(pos);
 
             circle = new google.maps.Circle({
-                strokeColor: '#FF0000',
+                strokeColor: '#FF9900',
                 strokeOpacity: 0.8,
-                fillColor: '#FF0000',
+                fillColor: '#FF9900',
                 fillOpacity: 0.35,
                 map: map, 
                 center: center,
@@ -96,6 +96,13 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
                           'Error: The Geolocation service failed.' :
                           'Error: Your browser doesn\'t support geolocation.');
     infoWindow.open(map);
+}
+
+function toggleKeywords(source) {
+    checkboxes = document.getElementsByName('keyword');
+    for(var i = 0, n = checkboxes.length; i <n ; i++) {
+      checkboxes[i].checked = source.checked;
+    }
 }
 
 function createMarker(place){
@@ -188,9 +195,9 @@ function redrawCircle(){
     document.getElementById("radiusSliderVal").textContent = radiusSlider.getValue();
     circle.setMap(null);
     circle = new google.maps.Circle({
-        strokeColor: '#FF0000',
+        strokeColor: '#FF9900',
         strokeOpacity: 0.8,
-        fillColor: '#FF0000',
+        fillColor: '#FF9900',
         fillOpacity: 0.35,
         map: map, 
         center: center,
@@ -215,7 +222,6 @@ function getRandom(results){
     return randomResult;
 }
 
-
 google.maps.event.addDomListener(window, 'load', initialize);
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -232,3 +238,4 @@ document.addEventListener("DOMContentLoaded", function() {
 // TODO: Only delivery + links to Rappi/Uber Eats, etc
 // TODO: Improve UI
 // TODO: Ads??
+// TODO: Share to social media buttons

@@ -3,7 +3,7 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    background: url('../images/bg.jpg') no-repeat;
+    background-color: #FF9900
 }
 
 #map {
@@ -18,6 +18,15 @@ html, body {
     height: 100vh;
     background-size: 200%;
 } */
+#radiusSlider .slider-selection {
+	background: #FF9900
+}
+
+#radiusSlider .slider-handle {
+	background: #FF9900
+}
+
+
 .form-container{
     position: absolute;
     top: 15vh;
